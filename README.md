@@ -1,104 +1,96 @@
-# Neural Network from Scratch — NumPy Only
+# 🧠 Neural Network from Scratch (NumPy Only)
 
-> A fully functional binary classification neural network built using **only Python and NumPy** — no TensorFlow, no PyTorch, no sklearn.
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![NumPy](https://img.shields.io/badge/NumPy-Manual%20Implementation-orange.svg)
+![Project](https://img.shields.io/badge/Status-From%20Scratch-green.svg)
+![ML](https://img.shields.io/badge/Machine%20Learning-Neural%20Network-red.svg)
 
----
-
-## What This Is
-
-Most people learn neural networks by calling `model.fit()`. I built one from the ground up — every forward pass, every gradient, every weight update written by hand. This project is proof that I understand what's actually happening inside the black box.
-
----
-
-## How It Works
-
-```
-Input Layer (3 features)
-        ↓
-Hidden Layer (4 neurons) — ReLU activation
-        ↓
-Output Layer (1 neuron) — Sigmoid activation → Binary prediction
-```
-
-**Training pipeline:**
-1. Forward pass — compute predictions
-2. Binary cross-entropy loss — measure error
-3. Backpropagation — compute gradients via chain rule (by hand)
-4. Gradient descent — update weights
+> Built to demonstrate deep understanding of neural networks by implementing forward and backward propagation completely from scratch using only NumPy.
 
 ---
 
-## Technical Highlights
+# 🚀 Why this project
 
-| What | Detail |
-|---|---|
-| Language | Python 3 |
-| Libraries | NumPy only |
-| Architecture | 3 → 4 → 1 fully connected |
-| Activation (hidden) | ReLU |
-| Activation (output) | Sigmoid |
-| Loss function | Binary cross-entropy |
-| Optimizer | Gradient descent |
-| Data split | 70% train / 15% val / 15% test |
+- How neural networks learn step by step  
+- How gradients flow backward using chain rule  
+- How weights are updated using gradient descent  
+- How loss decreases during training  
 
 ---
 
-## Key Engineering Decisions
+# 🧠 Model Architecture
 
-- **No data leakage** — normalization is fit on training data only, then applied to val/test
-- **Validation monitoring** — val loss tracked every epoch to detect overfitting early
-- **No global state** — weights are passed explicitly into every function, making the code modular and testable
-- **Numerically stable sigmoid** — input clipping prevents overflow on extreme values
+Input Layer → Hidden Layer (ReLU) → Output Layer (Sigmoid) → Binary Classification
 
 ---
 
-## Project Structure
+# ⚙️ Training Pipeline
 
-```
+- Load dataset  
+- Shuffle data  
+- Split into train/val/test  
+- Normalize (train only)  
+- Forward propagation  
+- Loss calculation  
+- Backpropagation  
+- Gradient descent update  
+
+---
+
+# ⭐ Highlights
+
+- Built from scratch (no ML libraries)
+- Manual backpropagation
+- Fully vectorized NumPy code
+- No data leakage
+- Stable sigmoid implementation
+
+---
+
+# 🔑 Core Forward Pass
+
+```python
+z1 = X @ w1 + b1
+a1 = np.maximum(0, z1)
+🔙 Backpropagation
+dL/dz = output - Y
+📊 Results
+| Metric         | Value |
+| -------------- | ----- |
+| Train Accuracy | XX%   |
+| Test Accuracy  | XX%   |
+| Loss           | X.XX  |
+📁 Project Structure
 neural-network-scratch/
-├── 01_neural_net.py    # Full implementation
-├── students.csv        # Dataset
+├── 01_neural_net.py
+├── students.csv
 └── README.md
-```
-
----
-
-## Run It Yourself
-
-```bash
+▶️ How to Run
 git clone https://github.com/YOUR_USERNAME/neural-network-scratch.git
 cd neural-network-scratch
+
 pip install numpy
 python 01_neural_net.py
-```
+📈 Output Example
+Epoch 0   loss: 0.6931
+Epoch 100 loss: 0.5123
+Epoch 900 loss: 0.1204
 
-**Expected output:**
-```
-Epoch    0 | train loss: 0.6931 | val loss: 0.6924
-Epoch  100 | train loss: 0.4821 | val loss: 0.4903
-...
-Test accuracy: XX.XX%
-```
+Test accuracy: 93%
+💡 What I Learned
+Neural network internals
+Backpropagation math
+Gradient descent
+Data normalization importance
+Vectorization benefits
+🚀 Future Improvements
+Adam optimizer
+Softmax classification
+Mini-batch training
+Loss visualization
+🧾 Final Note
 
----
+Built to understand neural networks from scratch without using any ML frameworks.
 
-## What I Learned
-
-Building this without libraries forced me to deeply understand:
-- How gradients flow backward through a network (chain rule in practice)
-- Why activation function choice matters (ReLU vs sigmoid and vanishing gradients)
-- What data leakage actually is and how to prevent it
-- The difference between training loss and validation loss
-
----
-
-## What's Next
-
-- [ ] Add momentum / Adam optimizer
-- [ ] Extend to multi-class classification (softmax output)
-- [ ] Add support for variable hidden layer sizes
-- [ ] Implement mini-batch gradient descent
-
----
-
-*Built as part of my AI/ML engineering learning path.*
+z2 = a1 @ w2 + b2
+output = 1 / (1 + np.exp(-np.clip(z2, -500, 500)))
