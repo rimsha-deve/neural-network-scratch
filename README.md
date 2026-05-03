@@ -70,7 +70,7 @@ neural-network-scratch/
 ## Run It Yourself
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/neural-network-scratch.git
+git clone https://github.com/rimsha-deve/neural-network-scratch.git
 cd neural-network-scratch
 pip install numpy
 python 01_neural_net.py
