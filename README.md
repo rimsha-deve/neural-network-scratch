@@ -101,7 +101,7 @@ Building this without libraries forced me to deeply understand:
 - [ ] Add momentum / Adam optimizer
 - [ ] Extend to multi-class classification (softmax output)
 - [ ] Add support for variable hidden layer sizes
-- [ ] Implement mini-batch gradient descent
+- [ ] Implement mini_batch gradient descent
 
 ---
 
